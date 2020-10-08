@@ -1,0 +1,6 @@
+models\User.class
+repository\CrudRepository.class
+repository\UsersRepositoryJdbcImpl.class
+servlet\SighUpServlet.class
+repository\UsersRepository.class
+servlet\LoginServlet.class
