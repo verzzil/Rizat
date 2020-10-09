@@ -1,9 +1,10 @@
 package repository;
 
 import models.User;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class UsersRepositoryJdbcImpl implements UsersRepository{
     private Connection connection;
@@ -23,6 +24,29 @@ public class UsersRepositoryJdbcImpl implements UsersRepository{
             st.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public List<User> findAll() {
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from users");
+
+            List<User> result = new ArrayList<>();
+
+            while (resultSet.next()) {
+                User user = new User(
+                        resultSet.getInt("id"),
+                        resultSet.getString("first_name"),
+                        resultSet.getString("last_name"),
+                        resultSet.getString("email"));
+                result.add(user);
+            }
+
+            return result;
+        } catch (SQLException e) {
+            throw new IllegalStateException(e);
         }
     }
 }
