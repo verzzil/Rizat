@@ -785,7 +785,7 @@ false Z
 false Zulu
 true posixrules
 </TimeZones>
-      <StartupTime>1601568071</StartupTime>
+      <StartupTime>1603025615</StartupTime>
     </root>
     <database id="2" parent="1" name="11-906">
       <ObjectId>16397</ObjectId>
@@ -799,7 +799,7 @@ true posixrules
     <database id="4" parent="1" name="task4">
       <ObjectId>24599</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>523</IntrospectionStateNumber>
+      <IntrospectionStateNumber>550</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|24618|24620|1
 </Relations>
@@ -869,7 +869,7 @@ true posixrules
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>524</IntrospectionStateNumber>
+      <IntrospectionStateNumber>551</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="21" parent="4" name="heap">
@@ -948,7 +948,7 @@ true posixrules
     <table id="34" parent="20" name="users">
       <ObjectId>24620</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>522</StateNumber>
+      <StateNumber>549</StateNumber>
     </table>
     <column id="35" parent="34" name="id">
       <Position>1</Position>
@@ -986,14 +986,20 @@ true posixrules
       <StateNumber>522</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="40" parent="34" name="users_pkey">
+    <column id="40" parent="34" name="uuid">
+      <Position>6</Position>
+      <DataType>varchar(100)|0s</DataType>
+      <StateNumber>549</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="41" parent="34" name="users_pkey">
       <ObjectId>24624</ObjectId>
       <StateNumber>522</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="41" parent="34" name="users_pkey">
+    <key id="42" parent="34" name="users_pkey">
       <ObjectId>24625</ObjectId>
       <StateNumber>522</StateNumber>
       <ColNames>id</ColNames>

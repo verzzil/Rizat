@@ -6,6 +6,7 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
+    private String uuid;
 
     public User(String email, String firstName, String lastName, String password) {
         this.email = email;
@@ -14,11 +15,17 @@ public class User {
         this.password = password;
     }
 
-    public User(Integer id, String email, String firstName, String lastName) {
+    public User(Integer id, String firstName, String lastName, String email) {
         this.id = id;
-        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
+    }
+
+    public User(String firstName, String password, String uuid) {
+        this.firstName = firstName;
+        this.password = password;
+        this.uuid = uuid;
     }
 
     public Integer getId() {
@@ -62,8 +69,16 @@ public class User {
         this.password = password;
     }
 
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
     @Override
     public String toString() {
-        return (  " " + getFirstName() + " " + getLastName() + " " + getPassword());
+        return (" " + getFirstName() + " " + getLastName() + " " + getPassword());
     }
 }

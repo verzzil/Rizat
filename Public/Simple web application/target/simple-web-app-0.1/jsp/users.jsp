@@ -24,10 +24,10 @@
         </tr>
         <c:forEach items="${usersList}" var="user">
             <tr>
-                <td>${user.getId()}</td>
-                <td>${user.getFirstName()}</td>
-                <td>${user.getLastName()}</td>
-                <td>${user.getEmail()}</td>
+                <td>${user.id}</td>
+                <td>${user.firstName}</td>
+                <td>${user.lastName}</td>
+                <td>${user.email}</td>
             </tr>
         </c:forEach>
     </table>
