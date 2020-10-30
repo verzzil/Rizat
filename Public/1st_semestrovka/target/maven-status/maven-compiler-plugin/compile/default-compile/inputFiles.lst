@@ -1,0 +1,16 @@
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\repositories\UsersRepository.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\repositories\UsersRepositoryImpl.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\listeners\CustomServletContextListener.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\signUp\SignUpService.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\dto\SignInForm.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\dto\SignUpForm.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\models\User.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\servlets\SignUpServlet.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\signUp\SignUpServiceImpl.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\UsersService.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\filters\AuthenticationFilter.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\servlets\SignInServlet.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\dto\UserDto.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\repositories\CrudRepository.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\signIn\SignInService.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\signIn\SignInServiceImpl.java
