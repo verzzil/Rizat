@@ -1,8 +1,14 @@
 package listeners;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import repositories.FilesRepository;
+import repositories.FilesRepositoryImpl;
 import repositories.UsersRepository;
 import repositories.UsersRepositoryImpl;
+import services.FilesService;
+import services.FilesServiceImpl;
+import services.UsersService;
+import services.UsersServiceImpl;
 import services.signIn.SignInService;
 import services.signIn.SignInServiceImpl;
 import services.signUp.SignUpService;
@@ -16,7 +22,7 @@ import javax.servlet.annotation.WebListener;
 @WebListener
 public class CustomServletContextListener implements ServletContextListener {
 
-    private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/Semester";
     private static final String DB_USERNAME = "postgres";
     private static final String DB_PASSWORD = "123456";
     private static final String DB_DRIVER = "org.postgresql.Driver";
@@ -33,8 +39,17 @@ public class CustomServletContextListener implements ServletContextListener {
         UsersRepository usersRepository = new UsersRepositoryImpl(dataSource);
         SignUpService signUpService = new SignUpServiceImpl(usersRepository);
         SignInService signInService = new SignInServiceImpl(usersRepository);
+        FilesRepository filesRepository = new FilesRepositoryImpl(dataSource);
+        UsersService usersService = new UsersServiceImpl(usersRepository);
+        FilesService filesUploadService = new FilesServiceImpl(filesRepository);
+
+
+
+
+
         servletContext.setAttribute("signUpService", signUpService);
         servletContext.setAttribute("signInService", signInService);
+        servletContext.setAttribute("filesUploadService", filesUploadService);
     }
 
     @Override

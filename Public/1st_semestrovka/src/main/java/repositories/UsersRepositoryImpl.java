@@ -2,6 +2,8 @@ package repositories;
 import models.User;
 
 import javax.sql.DataSource;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.*;
 import java.util.List;
@@ -18,9 +20,15 @@ public class UsersRepositoryImpl implements UsersRepository {
     //language=SQL
     private final static String SQL_FIND_BY_EMAIL = "select * from semestr_user where email = ";
 
+    //language=SQL
+    private final static String SQL_SELECT_ALL = "select * from service_user";
+
+    private JdbcTemplate jdbcTemplate;
+
     public UsersRepositoryImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
+        this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
+
 
     @Override
     public List<User> findAllByAge(Integer age) {
@@ -76,11 +84,11 @@ public class UsersRepositoryImpl implements UsersRepository {
     }
 
     @Override
-    public Optional<User> findById(Long id) {
-        return Optional.empty();
+    public User findById(Long id) {
+        return null;
     }
 
-    @Override
+    /*@Override
     public void save(User entity) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -103,7 +111,7 @@ public class UsersRepositoryImpl implements UsersRepository {
             generatedKeys = statement.getGeneratedKeys();
 
             if (generatedKeys.next()) {
-                entity.setId(generatedKeys.getInt("id"));
+                entity.setId(generatedKeys.getLong("id"));
             } else {
                 throw new SQLException("Problem with retieve id");
             }
@@ -112,22 +120,15 @@ public class UsersRepositoryImpl implements UsersRepository {
         } finally {
             closeAllConnection(generatedKeys, statement, connection);
         }
+    }*/
+
+    public void save(User entity) {
+        jdbcTemplate.update(SQL_INSERT, entity.getFirstName(),
+                entity.getLastName(),
+                entity.getEmail(),
+                entity.getHashPassword());
     }
 
-    @Override
-    public void update(User entity) {
-
-    }
-
-    @Override
-    public void remove(User entity) {
-
-    }
-
-    @Override
-    public void removeById(User entity) {
-
-    }
 
 
     private void closeAllConnection(ResultSet resultSet, PreparedStatement statement, Connection connection) {
@@ -150,6 +151,15 @@ public class UsersRepositoryImpl implements UsersRepository {
             }
         }
     }
+
+    private RowMapper<User> usersRowMapper = (row, rowNumber) -> User.builder()
+            .id(row.getLong("id"))
+            .firstName(row.getString("first_name"))
+            .lastName(row.getString("last_name"))
+            .email(row.getString("email"))
+            .hashPassword(row.getString("hash_password"))
+            .build();
+
 
 
 }

@@ -2,54 +2,21 @@ package models;
 
 import lombok.*;
 
+@Getter
+@Setter
 @EqualsAndHashCode
 @Builder
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
+
 public class User {
-    private Integer id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
     private String hashPassword;
+    private Integer age;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getHashPassword() {
-        return hashPassword;
-    }
-
-    public void setHashPassword(String hashPassword) {
-        this.hashPassword = hashPassword;
-    }
 }
 
