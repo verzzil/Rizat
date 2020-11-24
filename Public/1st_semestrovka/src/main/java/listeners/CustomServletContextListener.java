@@ -1,5 +1,8 @@
 package listeners;
 
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import repositories.FilesRepository;
 import repositories.FilesRepositoryImpl;
@@ -43,13 +46,15 @@ public class CustomServletContextListener implements ServletContextListener {
         UsersService usersService = new UsersServiceImpl(usersRepository);
         FilesService filesUploadService = new FilesServiceImpl(filesRepository);
 
-
-
+        ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory();
+        Validator validator = validatorFactory.getValidator();
 
 
         servletContext.setAttribute("signUpService", signUpService);
         servletContext.setAttribute("signInService", signInService);
         servletContext.setAttribute("filesUploadService", filesUploadService);
+        servletContext.setAttribute("usersService", usersService);
+        servletContext.setAttribute("validator", validator);
     }
 
     @Override

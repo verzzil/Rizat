@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface UsersService {
     Optional<UserDto> getUserByCookie(String value);
+    User getUserByEmail(String email);
     List<User> getAll();
     void addUser(User user);
 }

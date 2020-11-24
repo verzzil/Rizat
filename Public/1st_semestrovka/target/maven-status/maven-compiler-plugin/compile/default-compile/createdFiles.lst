@@ -9,6 +9,7 @@ services\signUp\SignUpServiceImpl.class
 services\FilesServiceImpl.class
 filters\EncodingFilter.class
 servlets\FilesServlet.class
+servlets\ProfileServlet.class
 repositories\CrudRepository.class
 repositories\FilesRepositoryImpl.class
 servlets\FilesUploadServlet.class
@@ -20,7 +21,9 @@ models\User$UserBuilder.class
 services\signIn\SignInService.class
 dto\SignUpForm.class
 models\FileInfo.class
+dto\FileDto.class
 listeners\CustomServletContextListener.class
+dto\FileDto$FileDtoBuilder.class
 dto\UserDto$UserDtoBuilder.class
 dto\UserDto.class
 servlets\SignInServlet.class

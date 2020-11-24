@@ -12,10 +12,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
-//@WebFilter("/*")
+@WebFilter("/*")
 public class AuthenticationFilter implements Filter {
-
-    private UsersService usersService;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -31,14 +29,10 @@ public class AuthenticationFilter implements Filter {
 
         Boolean isAuthenticated = false;
         Boolean sessionExists = session != null;
-        Boolean isLoginPage = request.getRequestURI().equals("/signIn");
+        Boolean isLoginPage = request.getRequestURI().equals("/signIn") || request.getRequestURI().equals("/signUp");
 
         if (sessionExists) {
-            isAuthenticated = (Boolean) session.getAttribute("authenticated");
-
-            if (isAuthenticated == null) {
-                isAuthenticated = false;
-            }
+            isAuthenticated = session.getAttribute("auth") != null;
         }
 
         // если авторизован и запрашивает не логин или если не авторизован и запрашивает логин
@@ -47,8 +41,7 @@ public class AuthenticationFilter implements Filter {
             filterChain.doFilter(request, response);
         } else if (isAuthenticated && isLoginPage) {
             // пользователь аутенцифицирован и запрашивает страницу входа
-            // - отдаем ему корень
-            response.sendRedirect("/");
+            response.sendRedirect("/profile");
         } else {
             // если пользователь не аутенцицицирован и запрашивает другие страницы
             response.sendRedirect("/signIn");

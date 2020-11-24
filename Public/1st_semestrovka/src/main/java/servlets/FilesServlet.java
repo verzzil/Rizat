@@ -26,17 +26,7 @@ public class FilesServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse response) throws ServletException, IOException {
-        String fileId = req.getParameter("id");
-        // получили информацию о загруженном файле
-        FileInfo fileInfo = filesService.getFileInfo(Long.parseLong(fileId));
-        // в ответ указали какого-типа данные уйдут клиенту
-        response.setContentType(fileInfo.getType());
-        // в ответ указали какой размер данных
-        response.setContentLength(fileInfo.getSize().intValue());
-        // в ответ указали оригинальнгое название файла
-        response.setHeader("Content-Disposition", "filename=\"" + fileInfo.getOriginalFileName() + "\"");
-        // записываем данные самого файла в ответ
-        filesService.writeFileFromStorage(Long.parseLong(fileId), response.getOutputStream());
-        response.flushBuffer();
+        req.setAttribute("files", filesService.writeFilesFromStorage());
+        req.getRequestDispatcher("/jsp/uploadedFiles.jsp").forward(req, response);
     }
 }

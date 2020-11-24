@@ -33,8 +33,9 @@ public class SignInServlet extends HttpServlet {
 
         if (signInService.signIn(form)) {
             HttpSession session = req.getSession();
+            session.setAttribute("currentEmail", form.getEmail());
             session.setAttribute("auth", true);
-            resp.sendRedirect("/");
+            resp.sendRedirect("/profile");
         } else {
             resp.sendRedirect("/signIn");
         }

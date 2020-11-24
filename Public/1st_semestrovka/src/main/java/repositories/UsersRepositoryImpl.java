@@ -2,6 +2,8 @@ package repositories;
 import models.User;
 
 import javax.sql.DataSource;
+
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -18,10 +20,10 @@ public class UsersRepositoryImpl implements UsersRepository {
     private final static String SQL_INSERT = "insert into semestr_user(first_name, last_name, email, hash_password) " +
             "values (?, ?, ?, ?)";
     //language=SQL
-    private final static String SQL_FIND_BY_EMAIL = "select * from semestr_user where email = ";
+    private final static String SQL_FIND_BY_EMAIL = "select * from semestr_user where email = ?";
 
     //language=SQL
-    private final static String SQL_SELECT_ALL = "select * from service_user";
+    private final static String SQL_SELECT_ALL = "select * from semestr_user";
 
     private JdbcTemplate jdbcTemplate;
 
@@ -29,6 +31,13 @@ public class UsersRepositoryImpl implements UsersRepository {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
+    private RowMapper<User> usersRowMapper = (row, rowNumber) -> User.builder()
+            .id(row.getLong("id"))
+            .firstName(row.getString("first_name"))
+            .lastName(row.getString("last_name"))
+            .email(row.getString("email"))
+            .hashPassword(row.getString("hash_password"))
+            .build();
 
     @Override
     public List<User> findAllByAge(Integer age) {
@@ -37,44 +46,10 @@ public class UsersRepositoryImpl implements UsersRepository {
 
     @Override
     public Optional<User> findUserByEmail(String email) {
-        Connection connection = null;
-        Statement statement = null;
-        ResultSet userFromDB = null;
-
         try {
-            connection = dataSource.getConnection();
-            statement = connection.createStatement();
-            userFromDB = statement.executeQuery(SQL_FIND_BY_EMAIL+"'"+email+"'");
-
-            if(userFromDB.next()) {
-                return Optional.of(User.builder()
-                        .email(userFromDB.getString("email"))
-                        .hashPassword(userFromDB.getString("hash_password"))
-                        .build());
-            }
+            return Optional.of(jdbcTemplate.queryForObject(SQL_FIND_BY_EMAIL, usersRowMapper, email));
+        } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
-
-        } catch (SQLException e) {
-            throw new IllegalStateException(e);
-        } finally {
-            if (userFromDB != null) {
-                try {
-                    userFromDB.close();
-                } catch (SQLException throwables) {
-                }
-            }
-            if (statement != null) {
-                try {
-                    statement.close();
-                } catch (SQLException throwables) {
-                }
-            }
-            if (connection != null) {
-                try {
-                    connection.close();
-                } catch (SQLException throwables) {
-                }
-            }
         }
     }
 
@@ -129,8 +104,6 @@ public class UsersRepositoryImpl implements UsersRepository {
                 entity.getHashPassword());
     }
 
-
-
     private void closeAllConnection(ResultSet resultSet, PreparedStatement statement, Connection connection) {
         if (resultSet != null) {
             try {
@@ -151,14 +124,6 @@ public class UsersRepositoryImpl implements UsersRepository {
             }
         }
     }
-
-    private RowMapper<User> usersRowMapper = (row, rowNumber) -> User.builder()
-            .id(row.getLong("id"))
-            .firstName(row.getString("first_name"))
-            .lastName(row.getString("last_name"))
-            .email(row.getString("email"))
-            .hashPassword(row.getString("hash_password"))
-            .build();
 
 
 

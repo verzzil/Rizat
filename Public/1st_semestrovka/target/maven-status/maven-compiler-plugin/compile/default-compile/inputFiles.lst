@@ -14,6 +14,7 @@ C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\dto\UserDto.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\repositories\CrudRepository.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\signIn\SignInService.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\repositories\UsersRepository.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\servlets\ProfileServlet.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\models\User.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\repositories\FilesRepository.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\servlets\SignUpServlet.java
@@ -21,5 +22,6 @@ C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\models\FileInfo.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\repositories\FilesRepositoryImpl.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\UsersService.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\servlets\FilesUploadServlet.java
+C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\dto\FileDto.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\UsersServiceImpl.java
 C:\Users\Rizat\IdeaProjects\1st_semestrovka\src\main\java\services\signIn\SignInServiceImpl.java

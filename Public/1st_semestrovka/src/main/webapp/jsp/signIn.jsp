@@ -2,7 +2,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Registration</title>
+    <title>Login</title>
 </head>
 <body>
 <form method="post" action="/signIn">
@@ -12,5 +12,6 @@
            placeholder="Enter password">
     <input type="submit" value="Sign In">
 </form>
+<a href="/signUp">Registration</a>
 </body>
 </html>

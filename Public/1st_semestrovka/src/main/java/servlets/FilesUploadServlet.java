@@ -33,6 +33,6 @@ public class FilesUploadServlet extends HttpServlet {
                 part.getContentType(),
                 part.getSize());
 
-        response.sendRedirect("/files");
+        response.sendRedirect("uploaded/files");
     }
 }

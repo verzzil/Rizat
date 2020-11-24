@@ -18,6 +18,9 @@ public class FilesRepositoryImpl implements FilesRepository {
     //language=SQL
     private final static String SQL_SELECT_BY_ID = "select * from file where id = ?";
 
+    //language=SQL
+    private final static String SQL_SELECT_ALL = "select * from file";
+
     private JdbcTemplate jdbcTemplate;
 
     public FilesRepositoryImpl(DataSource dataSource) {
@@ -48,6 +51,6 @@ public class FilesRepositoryImpl implements FilesRepository {
 
     @Override
     public List<FileInfo> findAll() {
-        return null;
+        return jdbcTemplate.query(SQL_SELECT_ALL,fileRowMapper);
     }
 }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html>
@@ -16,5 +17,11 @@
            placeholder="Enter password">
     <input type="submit" value="Registration">
 </form>
+<ul>
+    <c:forEach items="${violations}" var="error">
+        <li>${error.getMessage()}</li>
+    </c:forEach>
+</ul>
+<a href="/login">Login</a>
 </body>
 </html>
