@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Posts</title>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<script>
+    function renderPosts(posts, container) {
+        let innerHtml = '';
+
+        for (let i = 0; i < posts.length; i++) {
+            innerHtml += '<h2>' + posts[i]['name'] + '</h2>';
+            innerHtml += '<p> Posted by ' + posts[i]['userName'];
+            innerHtml += ' at ' + posts[i]['creationDate'] + '</p>';
+            innerHtml += '<p>' + posts[i]['text'] + '</p>';
+        }
+
+        container.html(innerHtml);
+    }
+
+    function sendQuery(search) {
+
+        let data = {
+            "search": search
+        };
+
+        $.ajax({
+            type: "POST", // метод запроса
+            url: "/posts", //урл запроса
+            data: JSON.stringify(data), // данные для отправки из JSON-объекта превращаем в JSON-строку
+            // что происходит, если запрос прошел успешнго?
+            success: function (response) {
+                // рисуем таблицу на основе ответа на запрос
+                renderPosts(response, $('#posts'))
+            },
+            //тип данных, который мы отпралвяем
+            dataType: "json",
+            contentType: "application/json"
+        });
+    }
+
+    $(document).ready(sendQuery(""));
+</script>
+<a href="/posts/new">Create new post</a> or go back to <a href="/profile">Profile</a>
+<div>
+    <input type="text" id="search" placeholder="Type something...">
+    <button onclick="sendQuery($('#search').val())">Search</button>
+</div>
+<div id="posts">
+
+</div>
+</body>
+</html>

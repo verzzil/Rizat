@@ -44,9 +44,6 @@ public class SignUpServlet extends HttpServlet {
         Set<ConstraintViolation<SignUpForm>> constraintViolations = validator.validate(form);
 
         if (!constraintViolations.isEmpty()) {
-            for (ConstraintViolation<SignUpForm> constraintViolation: constraintViolations) {
-                System.out.println(constraintViolation.getMessage());
-            }
             req.setAttribute("violations", constraintViolations);
             req.getRequestDispatcher("/jsp/signUp.jsp").forward(req,resp);
         } else {

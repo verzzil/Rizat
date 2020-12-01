@@ -23,6 +23,9 @@ public class UsersRepositoryImpl implements UsersRepository {
     private final static String SQL_FIND_BY_EMAIL = "select * from semestr_user where email = ?";
 
     //language=SQL
+    private final static String SQL_FIND_BY_ID = "select * from semestr_user where id = ?";
+
+    //language=SQL
     private final static String SQL_SELECT_ALL = "select * from semestr_user";
 
     private JdbcTemplate jdbcTemplate;
@@ -60,7 +63,7 @@ public class UsersRepositoryImpl implements UsersRepository {
 
     @Override
     public User findById(Long id) {
-        return null;
+        return jdbcTemplate.queryForObject(SQL_FIND_BY_ID, usersRowMapper, id);
     }
 
     /*@Override
