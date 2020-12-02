@@ -1,0 +1,22 @@
+body {
+    background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/07/05/hinh-anh-background-mau-nong-vang-cam-do_034912082.jpg");
+    background-size: cover;
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+}
+* {
+    padding: 0;
+    margin: 0;
+}
+.post {
+    padding: 20px;
+    display: grid;
+    gap: 10px;
+}
+.post:not(:last-child) {
+    border-bottom: 1px dashed #000;
+}
+.post:hover {
+    background:#ff5b0c;
+}

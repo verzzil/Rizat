@@ -7,11 +7,12 @@
             src="https://code.jquery.com/jquery-3.5.1.js"
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/posts.css">
 </head>
 <body>
 <script>
     function renderPosts(posts, container) {
-        let innerHtml = '';
+        let innerHtml = '<div class="post">';
 
         for (let i = 0; i < posts.length; i++) {
             innerHtml += '<h2>' + posts[i]['name'] + '</h2>';
@@ -19,6 +20,8 @@
             innerHtml += ' at ' + posts[i]['creationDate'] + '</p>';
             innerHtml += '<p>' + posts[i]['text'] + '</p>';
         }
+
+        innerHtml += "</div>";
 
         container.html(innerHtml);
     }
@@ -46,8 +49,10 @@
 
     $(document).ready(sendQuery(""));
 </script>
-<a href="/posts/new">Create new post</a> or go back to <a href="/profile">Profile</a>
-<div>
+<div style="justify-self: center">
+    <a href="/posts/new">Create new post</a> or go back to <a href="/profile">Profile</a>
+</div>
+<div style="justify-self: center">
     <input type="text" id="search" placeholder="Type something...">
     <button onclick="sendQuery($('#search').val())">Search</button>
 </div>

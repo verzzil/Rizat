@@ -1,0 +1,21 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <title>Profile</title>
+</head>
+<body>
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <nav class="my-2 my-md-0 mr-md-3">
+        <a class="btn btn-outline-primary" href="/files">Upload an image</a>
+        <a class="btn btn-outline-danger" href="/uploaded/files">Uploaded images</a>
+        <a class="btn btn-outline-warning" href="/posts/new">Create a post</a>
+        <a class="btn btn-outline-success" href="/posts">Created posts</a>
+    </nav>
+</div>
+<h1>${lastName} ${firstName}</h1>
+<ul>
+    <li>Email: ${email}</li>
+</ul>
+</body>
+</html>

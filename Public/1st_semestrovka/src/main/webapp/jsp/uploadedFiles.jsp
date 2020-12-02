@@ -3,12 +3,47 @@
 <html>
 <head>
     <title>Files</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url("https://img4.thuthuatphanmem.vn/uploads/2020/07/05/hinh-anh-background-mau-nong-vang-cam-do_034912082.jpg");
+            background-size: cover;
+            display: grid;
+        }
+
+        #upload {
+            text-align: center;
+            font-size: 1.5em;
+            padding: 20px 0;
+        }
+
+        .photo {
+            display: grid;
+            justify-items: center;
+            padding: 10px 0;
+            transition: all .3s;
+        }
+        .photo:hover {
+            background: darkred;
+        }
+        .photo:not(:last-child) {
+            border-bottom: 1px dashed #000;
+        }
+
+        .photo img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
-<a href="/files">Upload an image</a>
+<a class="btn btn-outline-warning" href="/files" id="upload">Upload an image</a>
 <c:forEach items="${files}" var="file">
-    <img src="${file.getContent()}" style="border: 1px solid #ddd; border-radius: 4px; padding: 5px; height: 150px; width: 150px;">
+<div class="photo">
+    <img src="${file.getContent()}">
     <p>${file.getFilename()}</p>
+</div>
 </c:forEach>
 </body>
 </html>
