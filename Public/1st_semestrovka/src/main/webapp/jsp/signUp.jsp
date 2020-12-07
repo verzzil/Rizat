@@ -51,6 +51,6 @@
         <li>${error.getMessage()}</li>
     </c:forEach>
 </ul>
-<a class="btn btn-outline-warning" href="/login">Login</a>
+<a class="btn btn-outline-warning" href="/signIn">Login</a>
 </body>
 </html>
