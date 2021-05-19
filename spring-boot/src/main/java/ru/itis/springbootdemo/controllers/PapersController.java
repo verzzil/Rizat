@@ -9,8 +9,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.springbootdemo.dto.PaperDto;
 import ru.itis.springbootdemo.dto.PapersPage;
+import ru.itis.springbootdemo.dto.UserDto;
 import ru.itis.springbootdemo.security.details.UserDetailsImpl;
 import ru.itis.springbootdemo.services.PapersService;
+import ru.itis.springbootdemo.services.UsersService;
 
 import java.util.List;
 
@@ -19,6 +21,9 @@ public class PapersController {
 
     @Autowired
     private PapersService papersService;
+
+    @Autowired
+    private UsersService usersService;
 
     @GetMapping("/papers")
     public String getAllPapers(@AuthenticationPrincipal UserDetailsImpl userDetails, Model model) {
@@ -82,5 +87,18 @@ public class PapersController {
                                              @RequestParam(value = "sort", required = false) String sort,
                                              @RequestParam(value = "direction", required = false) String direction) {
         return ResponseEntity.ok(papersService.search(size, page, query, sort, direction));
+    }
+
+    @GetMapping("/papers/user/{userId}")
+    public String getUserPapers(@AuthenticationPrincipal UserDetailsImpl userDetails, @PathVariable(name = "userId") Long userId, Model model) {
+        UserDto user = usersService.getUserById(userId);
+        List<PaperDto> papers = papersService.findPapersFromUserId(userId);
+        if (userDetails.getUser().getId().equals(userId)) {
+            model.addAttribute("isMyPage", true);
+        }
+        model.addAttribute("user", user);
+        model.addAttribute("papers", papers);
+
+        return "user_papers";
     }
 }

@@ -6,14 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import ru.itis.springbootdemo.dto.PaperDto;
 import ru.itis.springbootdemo.dto.UserDto;
 import ru.itis.springbootdemo.dto.UserSettingsDto;
 import ru.itis.springbootdemo.security.details.UserDetailsImpl;
+import ru.itis.springbootdemo.services.PapersService;
 import ru.itis.springbootdemo.services.UsersService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Controller
 public class ProfileController {

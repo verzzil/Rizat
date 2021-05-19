@@ -24,6 +24,7 @@
 </#if>
 
 <a href="/files/upload">Загрузить файл</a>
-<a href=""></a>
+<br>
+<a href="/papers/user/${user.id}">Посты этого пользователя</a>
 </body>
 </html>
