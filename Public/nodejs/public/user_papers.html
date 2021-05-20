@@ -14,12 +14,11 @@
 
 <h1>Нахождение всех постов пользователя по id</h1>
 <input id="input_user_id" type="number" placeholder="Введите id пользователя" required class="input1">
-<button class="button1">Найти посты пользователя</button>
+<button class="button1" id="btn">Найти посты пользователя</button>
+<a href="/about.html" class="button1">Вернуться на стартовую страницу</a>
 <ul id="papers">
 
 </ul>
-<a href="/about.html" class="button1">Вернуться на стартовую страницу</a>
-</body>
 <script type="text/javascript">
     let backgrounds = [
         "url(/images/background_1.jpg) top center no-repeat",
@@ -31,4 +30,6 @@
     ];
     document.body.style.background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
 </script>
+</body>
+
 </html>
