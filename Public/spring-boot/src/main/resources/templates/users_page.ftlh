@@ -46,5 +46,14 @@
         });
     });
 </script>
+<script type="text/javascript">
+    let backgrounds = [
+        "url(/images/background_3.jpg) top center no-repeat",
+        "url(/images/background_4.jpg) top center no-repeat",
+        "url(/images/background_5.jpg) top center no-repeat",
+        "url(/images/background_6.jpg) top center no-repeat",
+    ];
+    document.body.style.background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+</script>
 </body>
 </html>

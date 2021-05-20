@@ -21,9 +21,5 @@
     <input type="submit" value="Registration">
 </form>
 <a class="btn btn-outline-warning" href="/signIn">Login</a>
-<button onclick="simple()">Click</button>
-
-
-
 </body>
 </html>

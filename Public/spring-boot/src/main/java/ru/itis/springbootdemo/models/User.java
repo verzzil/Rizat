@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -24,11 +25,16 @@ public class User {
     private String firstName;
     private String lastName;
     private String phone;
+    private Integer age;
+    private String sex;
 
     @Enumerated(value = EnumType.STRING)
     private State state;
 
     private String confirmCode;
+
+    @OneToMany(mappedBy = "user")
+    private List<Paper> papers;
 
 
 

@@ -19,6 +19,8 @@ public class UserDto {
     private String firstName;
     private String lastName;
     private String phone;
+    private Integer age;
+    private String sex;
 
     public static UserDto from(User user) {
         return UserDto.builder()
@@ -27,6 +29,8 @@ public class UserDto {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .phone(user.getPhone())
+                .age(user.getAge())
+                .sex(user.getSex())
                 .build();
     }
 
@@ -34,5 +38,9 @@ public class UserDto {
         return users.stream()
                 .map(UserDto::from)
                 .collect(Collectors.toList());
+    }
+
+    public String getFullName() {
+        return this.firstName + " " + this.lastName;
     }
 }

@@ -17,12 +17,14 @@ public class PaperDto {
     private Long id;
     private String title;
     private String description;
+    private Long authorId;
 
     public static PaperDto from(Paper paper) {
         return PaperDto.builder()
                 .id(paper.getId())
                 .title(paper.getTitle())
                 .description(paper.getDescription())
+                .authorId(paper.getUser().getId())
                 .build();
     }
 

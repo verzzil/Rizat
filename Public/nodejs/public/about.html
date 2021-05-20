@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <title>About</title>
+</head>
+<body>
+<ul class="main">
+    <li class="lis"><a href="/papers.html">Посмотреть посты</a></li>
+    <li class="lis"><a href="/user_papers.html">Посмотреть посты конкретного пользователя</a></li>
+    <li class="lis"><a href="/users.html">Посмотреть пользователей</a></li>
+</ul>
+<script type="text/javascript">
+    let backgrounds = [
+        "url(/images/background_1.jpg) top center no-repeat",
+        "url(/images/background_2.jpg) top center no-repeat",
+        "url(/images/background_4.jpg) top center no-repeat",
+        "url(/images/background_5.jpg) top center no-repeat",
+        "url(/images/background_6.jpg) top center no-repeat",
+        "url(/images/background_7.jpg) top center no-repeat",
+    ];
+    document.body.style.background = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+</script>
+</body>
+</html>

@@ -6,9 +6,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
+import ru.itis.springbootdemo.dto.PaperDto;
 import ru.itis.springbootdemo.dto.PapersPage;
 import ru.itis.springbootdemo.models.Paper;
 import ru.itis.springbootdemo.repositories.PapersRepository;
+import ru.itis.springbootdemo.repositories.UsersRepository;
+
+import java.util.List;
 
 import static ru.itis.springbootdemo.dto.PaperDto.from;
 
@@ -17,6 +21,9 @@ public class PapersServiceImpl implements PapersService {
 
     @Autowired
     private PapersRepository papersRepository;
+
+    @Autowired
+    private UsersRepository usersRepository;
 
     @Override
     public PapersPage search(Integer size, Integer page, String query, String sortParameter, String directionParameter) {
@@ -42,5 +49,46 @@ public class PapersServiceImpl implements PapersService {
                 .pagesCount(papersPage.getTotalPages())
                 .papers(from(papersPage.getContent()))
                 .build();
+    }
+
+    @Override
+    public List<PaperDto> findAllPapers() {
+        return PaperDto.from(papersRepository.findAllByOrderByIdDesc());
+    }
+
+    @Override
+    public void save(PaperDto paperDto) {
+        Paper paper = Paper.builder()
+                .title(paperDto.getTitle())
+                .description(paperDto.getDescription())
+                .user(usersRepository.findById(paperDto.getAuthorId()).orElseThrow(IllegalArgumentException::new))
+                .build();
+
+        papersRepository.save(paper);
+    }
+
+    @Override
+    public void deleteById(Long paperId) {
+        papersRepository.deleteById(paperId);
+    }
+
+    @Override
+    public void editPaper(PaperDto paperDto) {
+        Paper paper = papersRepository.findById(paperDto.getId()).orElseThrow(IllegalArgumentException::new);
+
+        if (paperDto.getTitle() != null) paper.setTitle(paperDto.getTitle());
+        if (paperDto.getDescription() != null) paper.setDescription(paperDto.getDescription());
+
+        papersRepository.save(paper);
+    }
+
+    @Override
+    public List<PaperDto> findPapersByTemplate(String template) {
+        return PaperDto.from(papersRepository.findAllByTitleLikeOrderByIdDesc("%"+template+"%"));
+    }
+
+    @Override
+    public List<PaperDto> findPapersFromUserId(Long userId) {
+        return PaperDto.from(papersRepository.findPapersFromUserId(userId));
     }
 }
